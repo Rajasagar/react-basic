@@ -1,4 +1,5 @@
 import './ExpenseDate.css';
+import React from "react";
 // This function rendering the date of an expense.
 
 function ExpenseDate(props){

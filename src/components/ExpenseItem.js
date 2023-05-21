@@ -1,5 +1,7 @@
 import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate'
+import Card from './Card'
+import React from "react";
 function ExpenseItem(props) {
             // const expensesDate = new Date(2023, 5, 21);
             // const expenseTitle = "car Insurance";
@@ -10,7 +12,7 @@ function ExpenseItem(props) {
             // const year = props.date.getFullYear();
            
     return (
-      <div className="expense-item">
+      <Card className="expense-item">
         {/* above variable use as month day year to store below div components  */}
         <ExpenseDate date={props.date} />
         {/* <div>{props.date.toISOString()}</div> */}
@@ -18,7 +20,7 @@ function ExpenseItem(props) {
           <h2>{props.title}</h2>
           <div className="expense-item__price">${props.amount}</div>
         </div>
-      </div>
+      </Card>
     );
 }
 
