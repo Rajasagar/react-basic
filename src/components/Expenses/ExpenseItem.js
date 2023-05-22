@@ -14,11 +14,13 @@ function ExpenseItem(props) {
   // const year = props.date.getFullYear();
   //creating useState
   const [title, setTitle]= useState(props.title) // title - variable and setTitle - updating function
+  console.log('ExpenseItem evalated by React'); //  it will print how many times ExpenseItem is used in code.
 
   const clickHandler = () => {
     setTitle('Updated.!') // use updating function is update the value after it got click.
     console.log(title);
   };
+
   return (
     <Card className="expense-item">
       {/* above variable use as month day year to store below div components  */}
