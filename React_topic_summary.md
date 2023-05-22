@@ -1,6 +1,6 @@
 - React allows you to build these re-usable and reactive components consisting of HTML and JavaScript.
 - React uses something which is called a declarative approach
-- components basically just a custom HTML elements.And we do that with this declarative approach,as I mentioned, which means with React we defined the desired target state and React is then responsible for generating and running the actual DOM instructions which update what's visible on the screen.
+- components basically just a custom HTML elements.And we do that with this declarative approach,as I mentioned, which means with React we defined the desired target state and React is then responsible for generating and running the actual DOM instructions which update what's visible on the screen. 
 
 - What is JSX?
     - javascript xml it's special, non-standards syntax which is enabled in React projects.
