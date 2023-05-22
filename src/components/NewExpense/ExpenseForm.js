@@ -24,7 +24,9 @@ const ExpenseForm =()=>{
     const amountChangeHandler = (event)=>{
         //setEnteredAmount(event.target.value)
         setUserInput({
-            ...userInput,
+            ...userInput, //spread operater to get other value what we miss when we takes an object,pulls out all the key value pairs,
+                         //and adds them to this new object. And then we can still override key value pairs like in this case enter title.
+                         //And by doing it like this,we ensure that the other values aren't thrown away,
             enteredAmount:event.target.value
         });
     };
