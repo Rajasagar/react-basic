@@ -2,6 +2,8 @@ import './App.css';
 import Expense from './components/Expenses/Expense';
 import ExpenseItem from "./components/Expenses/ExpenseItem"
 import React from 'react'
+import NewExpense from './components/NewExpense/NewExpense';
+
 function App() {
   const expenses = [
     {
@@ -29,22 +31,24 @@ function App() {
   //So that's why we have this one wrapper root JSX element below one React.createElement and below to
   //below is <div> 3 attribute h2 , p , expenses </div>
 
-  return React.createElement(
-    "div",
-    {},
-    React.createElement("h2", {}, "lets get started!"),
-    React.createElement("p",{},"This is visiable"),
-    React.createElement(Expense, {items: expenses}) // above code what we create is old way 
+  // return React.createElement(
+  //   "div",
+  //   {},
+  //   React.createElement("h2", {}, "lets get started!"),
+  //   React.createElement("p",{},"This is visiable"),
+  //   React.createElement(Expense, {items: expenses}) // above code what we create is old way 
     // of creating jsx code or alternative of jsx code what we create below it will work same it is
     // not easy reading or understanding it , we have Import React from 'react' in all .js files to run above code.
 
     // this is jsx code what we write below but in the brower it will go just like HTML.
     // jsx code not be there it will convert but not shown on the brower.
-    // <div>
-    //   <h2>lets get started!</h2>
-    //   <p>This is visiable</p>
-    //   <Expense items={expenses} />
-    // </div>
+    return (
+    <div>
+      {/* <h2>lets get started!</h2> */}
+      <NewExpense />
+      {/* <p>This is visiable</p> */}
+      <Expense items={expenses} />
+    </div>
 
     //  {/* above code is shorter version of expenseitem what we created. below
     //  basically we created new components and store all the details in Expense.js componets and add css to it and bring items attribute with expenses what we define as an array.  */}
