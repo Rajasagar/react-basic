@@ -44,20 +44,40 @@ const ExpenseForm =()=>{
         // });
 
     };
+
+    // handle the submit when we provide input to something in required field
+    const submitHandler = (event) =>{
+      event.preventDefault();
+
+      const expenseData = {
+        title: enteredTitle,
+        amount: enteredAmount,
+        date: new Date(enteredDate)
+      };
+
+      console.log(expenseData)
+      //two way binding thats means we remove the value after it store somewhere 
+      //and delete from input value. and we have to put value={} in  input element in jsx code.
+      setEnteredTitle('');
+      setEnteredAmount('');
+      setEnteredDate('');
+    };
+
+
     return (
-      <form>
+      <form onSubmit={submitHandler}>
         <div className="new-expense__controls">
           <div className="new-expense__controls">
             <label>Title</label>
-            <input type="text" onChange={titlechangeHandler} />
+            <input type="text" value={enteredTitle} onChange={titlechangeHandler} />
           </div>
           <div className="new-expense__controls">
             <label>Amount</label>
-            <input type="number" onChange={amountChangeHandler} min="0.01" step="0.01"/>
+            <input type="number" value={enteredAmount} onChange={amountChangeHandler} min="0.01" step="0.01"/>
           </div>
           <div className="new-expense__controls">
             <label>Date</label>
-            <input type="date" onChange={dateChangeHandler} min="2012-01-01" max="2023-12-12" />
+            <input type="date" value={enteredDate} onChange={dateChangeHandler} min="2012-01-01" max="2023-12-12" />
           </div>
         </div>
         <div className="new-expense__actions">
