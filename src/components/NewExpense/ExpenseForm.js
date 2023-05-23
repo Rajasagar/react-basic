@@ -4,39 +4,44 @@ import './ExpenseForm.css'
 const ExpenseForm =()=>{
     //document.getElementById('').addEventListener('click', (event) =>{})
 
-    const [userInput, setUserInput] = useState({
-        enteredTitle:'',
-        enteredAmount:'',
-        enteredDate: ''
-    }); // uses all the useState in one places
+    // const [userInput, setUserInput] = useState({
+    //     enteredTitle:'',
+    //     enteredAmount:'',
+    //     enteredDate: ''
+    // }); // uses all the useState in one places
 
-   // const [enteredTitle, setEnteredTitle]= useState('')
+    const [enteredTitle, setEnteredTitle]= useState('')
     const titlechangeHandler = (event)=>{
         // console.log(event.target.value);
-        //setEnteredTitle(event.target.value)
+        setEnteredTitle(event.target.value)
         //use other way to store the value when we combing the useState as one
-        setUserInput({
-            ...userInput,
-            enteredTitle:event.target.value
-        });
+        // setUserInput({
+        //     ...userInput,
+        //     enteredTitle: event.target.value
+        // });
+        // setUserInput((prevState)=>{
+        //   return {...prevState, enteredTitle: event.target.value}
+        // })
     };
-    //const [enteredAmount, setEnteredAmount] = useState('')
+
+    const [enteredAmount, setEnteredAmount] = useState('')
     const amountChangeHandler = (event)=>{
-        //setEnteredAmount(event.target.value)
-        setUserInput({
-            ...userInput, //spread operater to get other value what we miss when we takes an object,pulls out all the key value pairs,
-                         //and adds them to this new object. And then we can still override key value pairs like in this case enter title.
-                         //And by doing it like this,we ensure that the other values aren't thrown away,
-            enteredAmount:event.target.value
-        });
+        setEnteredAmount(event.target.value)
+        // setUserInput({
+        //     ...userInput, //spread operater to get other value what we miss when we takes an object,pulls out all the key value pairs,
+        //                  //and adds them to this new object. And then we can still override key value pairs like in this case enter title.
+        //                  //And by doing it like this,we ensure that the other values aren't thrown away,
+        //     enteredAmount: event.target.value
+        // });
     };
-    //const [enteredDate, setEnteredDate] =  useState('')
+
+    const [enteredDate, setEnteredDate] =  useState('')
     const dateChangeHandler = (event)=>{
-        //setEnteredDate(event.target.value)
-        setUserInput({
-            ...userInput,
-            enteredDate:event.target.value
-        });
+        setEnteredDate(event.target.value)
+        // setUserInput({
+        //     ...userInput,
+        //     enteredDate: event.target.value
+        // });
 
     };
     return (
