@@ -159,3 +159,37 @@ You create a Component, which is in the end, just a function of returning some H
 
         - In a Nutshell  using State is simple though. You just register State with useState, you always get back two values; the value itself and the updating function. You call the updating function whenever the State should change, and you use that first element whenever you wanna use the State value, like here for outputting it in the JSX code. And React, will do the rest and it will re-execute the component function and re-evaluate the JSX code therefore; whenever the State changes. That's State and that's an important concept because it's State which adds reactivity to our application. Without State, our user interface would never change. But with State and with listening to events, we can make sure that we can react to user input and that such input can result in a visible change on our screen.
         
+- Working with multiple useState()
+
+        - 1. we can create different- different useState() or we call a multi-state useState approach and add in the titlchangeHandler function and there we can different function which we use in useState() array. and do the same for different useState.
+        const ExpenseForm =()=>{
+        const [enteredTitle, setEnteredTitle]= useState('')
+        const titlechangeHandler = (event)=>{
+                console.log(event.target.value);
+        };
+        };
+        - Above is sometimes more code we have to write if we have more useState()
+
+        2. we can combine all the useState() as once and define function and speard operator to fetch the data which here not called or leave behind when we use othe useState().
+        - here we can use useState() in one places for different function.
+        - const [userInput, setUserInput] = useState({
+          enteredTitle:'',
+          enteredAmount:'',
+          enteredDate: ''
+         }); // uses all the useState in one places
+        -  const amountChangeHandler = (event)=>{
+        //setEnteredAmount(event.target.value)
+        setUserInput({
+            ...userInput, //spread operater to get other value what we miss when we takes an object,pulls out all the key value pairs,
+                         //and adds them to this new object. And then we can still override key value pairs like in this case enter title.
+                         //And by doing it like this,we ensure that the other values aren't thrown away,
+            enteredAmount: event.target.value
+                });
+                };
+        - 3. for differnt useState() we are spread operator to fetch the other data.for that we have new solution we can create setUseinput as a function and pass a counter variable to remmeber the last value and pass to next after first useState done.
+        - setUserInput((prevState)=>{
+          return {...prevState, enteredTitle: event.target.value}
+        });
+
+        - all the above 3 way will work fine but for 3 one here is the reason.
+        - that Reacts schedules state updates, it doesn't perform them instantly. And therefore, theoretically, if you schedule a lot of state updates at the same time, you could be depending on an outdated or incorrect state snapshot if you use this approach. If you use this approach, React will guarantee that the state snapshot it gives you here in this inner function, will always be the latest state snapshot, keeping all scheduled state updates in mind. So this is the safer way to ensure that you always operate on the latest state snapshot.So you should use this function syntax here whenever your state update depends on the previous state. That is something you should memorize. If your state update depends on the previous state, use this function form.With all of that though,
