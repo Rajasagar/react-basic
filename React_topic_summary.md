@@ -193,3 +193,96 @@ You create a Component, which is in the end, just a function of returning some H
 
         - all the above 3 way will work fine but for 3 one here is the reason.
         - that Reacts schedules state updates, it doesn't perform them instantly. And therefore, theoretically, if you schedule a lot of state updates at the same time, you could be depending on an outdated or incorrect state snapshot if you use this approach. If you use this approach, React will guarantee that the state snapshot it gives you here in this inner function, will always be the latest state snapshot, keeping all scheduled state updates in mind. So this is the safer way to ensure that you always operate on the latest state snapshot.So you should use this function syntax here whenever your state update depends on the previous state. That is something you should memorize. If your state update depends on the previous state, use this function form.With all of that though,
+
+- Question . You're working on a text messaging app and your task is to validate the text entered by a user whilst the user is typing. If the text message entered is valid (for this example: if it's at least 3 characters long), the text "Valid message" should be displayed below the input field. If it's invalid (i.e., shorter than 3 characters), the text "Invalid message" should be displayed.
+
+        - solution 
+        - app.js
+                import React from 'react';
+
+                import './styles.css';
+
+                // don't change the Component name "App"
+                export default function App() {
+                const [messageValidity, setMessageValidity] = React.useState('Invalid');
+                
+                const messgaeChangeHandler = (event)=&gt;{
+                        const value = event.target.value;
+                        if (value.trim().length &lt; 3){
+                        setMessageValidity('Invalid')
+                        }
+                        else{
+                        setMessageValidity('Valid')
+                        }
+                }
+                
+                return (
+                        
+                        Your message
+                        
+                        <p>{messageValidity} message</p>
+                        
+                );
+                }
+        - style.css
+                body {
+                font-family: sans-serif;
+                margin: 0;
+                padding: 3rem;
+                background-color: #2d2c2c;
+                color: #959090;
+                }
+
+                label {
+                display: block;
+                margin-bottom: 0.5rem;
+                }
+
+                input {
+                font: inherit;
+                padding: 0.5rem;
+                background-color: #474545;
+                border: none;
+                border-radius: 4px;
+                color: white;
+                }
+
+- Question (Exercise: Updating State Based On Older State) .Your task is to build a basic counter that should increment whenever the "Increment" button is clicked.Whilst this task allows you to apply your general knowledge about event handling and state (which you already practiced quite a bit at this point in the course), there's also one crucial new aspect: You should update the state following React best practices!
+
+        - solution 
+        - app.js
+        import React from 'react';
+
+        import './styles.css';
+
+        // don't change the Component name "App"
+        export default function App() {
+        
+        const [incrementNumber, setIncrementNumber] = React.useState(0);
+        
+        const numberChangeHandler = ()=&gt;{
+                setIncrementNumber(prevCounter =&gt; prevCounter +1 );
+        }
+        
+        return (
+        <div>
+                <p>{incrementNumber}</p>
+                Increment
+        </div>
+        );
+        }
+        - style.css
+        body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 3rem;
+        background-color: #2d2c2c;
+        color: #959090;
+        text-align: center;
+        }
+
+        #counter {
+        color: #d7adff;
+        font-size: 3rem;
+        }
+
