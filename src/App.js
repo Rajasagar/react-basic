@@ -42,10 +42,17 @@ function App() {
 
     // this is jsx code what we write below but in the brower it will go just like HTML.
     // jsx code not be there it will convert but not shown on the brower.
+
+    const addExpenseHandler = expense =>{
+      console.log('IN APP.js');
+      console.log(expense)
+    }
+
+
     return (
     <div>
       {/* <h2>lets get started!</h2> */}
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler}/>
       {/* <p>This is visiable</p> */}
       <Expense items={expenses} />
     </div>
