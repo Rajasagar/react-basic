@@ -326,3 +326,87 @@ You create a Component, which is in the end, just a function of returning some H
                 <input type="text" value={enteredTitle} onChange={titlechangeHandler} />
                 </div>
         )
+
+- Child-to-parent component communication (BOTTOM-UP)
+
+        - Let's say we wanna pass the expense data which we gather in the expense form component to the new expense component as a first step because if we ultimately wanna reach the app component, we first of all have to reach the new expense component because it's the new expense component which uses the expense form and then in a second step later, it's the app component which use the new expense component but we can't skip components in between, that's also something you learned in the previous course section. Props can only be passed from parent to child, we can't skip intermediate components.
+
+        - first step
+         in newExpense.js 
+        const NewExpense = ()=>{
+        const saveExpenseDataHandler = (enteredExpenseData) =>{
+                const expenseData ={
+                ...enteredExpenseData,
+                id: Math.random().toString()
+                };
+                console.log(expenseData)
+        };
+
+        return (
+        <div className="new-expense">
+        <ExpenseForm  onSaveExpenseData ={saveExpenseDataHandler}/>
+        </div>
+        );
+        };
+        export default NewExpense;
+
+        - so that this onSaveExpenseData prop in my custom component receives above function(saveExpenseDataHandler) as a value. we don't add parenthesis, I just point at the function, so that the function itself a pointer edit is passed to expense form.
+        
+        - second step:
+         to use the inside the of our customed componets that step we don't have do to for inputs because these are built in components basically, but they're also we pass a function to onchange and internally react and we'll add a listener and call this function which we pass in whenever that event occurs, that change event. Now, since we're doing this on our own custom component,
+         in ExpenseForm.js
+        const ExpenseForm =(props)=>{ 
+        const submitHandler = (event) =>{
+        event.preventDefault();
+
+        const expenseData = {
+                title: enteredTitle,
+                amount: enteredAmount,
+                date: new Date(enteredDate)
+        };
+
+        //console.log(expenseData)
+        props.onSaveExpenseData(expenseData) // we are passing above data to pass as an arguments 
+        //and will be there to child NewExpense.js where we use this as function point to get/recived as parameter the data for there need.
+        setEnteredTitle('');
+        setEnteredAmount('');
+        setEnteredDate('');
+        };
+
+         };
+        - So, inside of expense form, I of course now expect to get some props because we're setting a prop now and now, inside of the submit handler, instead of I logging my expense data,I will access props onSaveexpensedata and executed here. And that's not important, now I executed I can execute it. I can execute it because the value which we get on this onSaveexpensedata key will be a function. We are passing in a function here after all.So it's this function defined in the new expense component which we will now execute in a different component,inside of expense them to be precise. And we can execute the function even though it's not defined inside of expense form because we are passing a pointer edit through the onSaveexpensedata prop.And this is a super important pattern which you will use a lot in react. This is how you can communicate between components and how you can communicate up.
+        - how you can make sure that a child component,the expense form component here for example, can communicate up to the parent component,.i.e., new expense component in this case. We can call a function in the new expense component and we can pass data as a parameter. So here, when we call onSaveexpensedata in the expense form, I can pass the expense data which are generated here as our argument .... props.onSaveExpenseData(expenseData) 
+        and that's the value which we'll receive as a parameter (enteredExpenseData) here in new expense.   const saveExpenseDataHandler = (enteredExpenseData) =>{.....}
+        I hope this flow is clear. The trick really is that we pass around a pointer at a function.
+        when we run this and see on console we see that it is being on the console and in the code in the NewExpense.js console.log(expenseData) and data is generated there too what we passed in UI.
+
+        - we can communicate up from inside the expense.js to app.js because its this app componets which needs the new expense in the end to add it to expenses array.
+        so there fore in app.js we have a add function which we defind before  the jsx code.
+        app.js.....
+        const addExpenseHandler = expense =>{
+        console.log('IN APP.js'); // for the moment i'll just console.log in app.js
+        console.log(expense)
+        }
+        return (
+                <div>
+                {/* <h2>lets get started!</h2> */}
+                <NewExpense onAddExpense={addExpenseHandler}/>
+                {/* <p>This is visiable</p> */}
+                <Expense items={expenses} />
+                </div>
+        ) -So here's the function now again, using the same pattern as before, we can pass a pointer at this function to a new expense so that inside of new expense, we can call this function and pass that expense data up to the app component.
+        - onAddExpense that it's a function pointer which has passed as our argument and then I pass a pointer at add expense handler to the on expense prop on new expense, 
+        and therefore inside of new expense, we can now call it. NewExpense.js
+
+        const NewExpense = (props)=>{ // We can accept the props argument here as well,
+        const saveExpenseDataHandler = (enteredExpenseData) =>{
+                const expenseData ={
+                ...enteredExpenseData,
+                id: Math.random().toString()
+                };
+                props.onAddExpense(expenseData) // here we call it
+                //console.log(expenseData)
+        };
+        - so inside the saveExpenseDataHandler we have to bring new expense and therefore inside it we have to call it now as props.onAddExpense(expenseData). I'm calling us here, and it will forward my enriched expense data here. And if we now save everything,
+
+
