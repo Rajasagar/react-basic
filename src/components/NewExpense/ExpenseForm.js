@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import './ExpenseForm.css'
 
-const ExpenseForm =()=>{
+const ExpenseForm =(props)=>{ 
+    // we are setting the props now. 
     //document.getElementById('').addEventListener('click', (event) =>{})
 
     // const [userInput, setUserInput] = useState({
@@ -55,9 +56,12 @@ const ExpenseForm =()=>{
         date: new Date(enteredDate)
       };
 
-      console.log(expenseData)
+      //console.log(expenseData)
+      props.onSaveExpenseData(expenseData) // we are passing above data to pass as an arguments 
+      //and will be there to child NewExpense.js where we use this as function point to get/recived as parameter the data for there need.
       //two way binding thats means we remove the value after it store somewhere 
       //and delete from input value. and we have to put value={} in  input element in jsx code.
+      
       setEnteredTitle('');
       setEnteredAmount('');
       setEnteredDate('');
