@@ -286,3 +286,43 @@ You create a Component, which is in the end, just a function of returning some H
         font-size: 3rem;
         }
 
+- Two-way binding
+        
+        - which is called two-way binding, which simply means that for inputs we don't just listen to changes, but we can also pass a new value back into the input. So that we can reset or change the input programmatically. And how do we do that? Well, it's very simple. All we have to do is add the value attribute, which is a default attribute, to this input element. This will set the internal value property, which every input element has. And we can set it to a new value. And here, I will bind this to enteredTitle. So now it is this two-way binding because now we don't just listen to changes in the input to update our state. But we also feed the state back into the input so that when we change the state, we also change input. This might sound like an infinite loop, but it actually isn't. So we won't have a problem there. But the advantage is that when the form is submitted for example, we can call setEnteredTitle. And set this back to an empty string, which also was our initial state. And by doing that, we override what the user entered after the form was submitted and therefore cleared the input. And we can do this for all inputs. We can set the entered amount to an empty string, and set the entered date to an empty string, and then just add to the value prop to all these inputs. So here I add value and point at enteredAmount to pass that back into the amount input. Two-way binding is very useful when you're working with forms because it allows you to gather user input, but then also change it.
+
+        - For example, upon form of mission.
+
+        const ExpenseForm =()=>{
+                
+        const [enteredTitle, setEnteredTitle]= useState('')
+        const titlechangeHandler = (event)=>{
+                // console.log(event.target.value);
+                setEnteredTitle(event.target.value)
+        };
+
+                // handle the submit when we provide input to something in required field
+        const submitHandler = (event) =>{
+        event.preventDefault();
+
+        const expenseData = {
+                title: enteredTitle,
+                amount: enteredAmount,
+                date: new Date(enteredDate)
+        };
+
+        console.log(expenseData)
+        //two way binding thats means we remove the value after it store somewhere 
+        //and delete from input value. and we have to put value={} in  input element in jsx code.
+        setEnteredTitle('');
+        setEnteredAmount('');
+        setEnteredDate('');
+        };
+        }  
+        return (
+        <form onSubmit={submitHandler}>
+                <div className="new-expense__controls">
+                <div className="new-expense__controls">
+                <label>Title</label>
+                <input type="text" value={enteredTitle} onChange={titlechangeHandler} />
+                </div>
+        )
