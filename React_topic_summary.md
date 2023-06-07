@@ -409,4 +409,3 @@ You create a Component, which is in the end, just a function of returning some H
         };
         - so inside the saveExpenseDataHandler we have to bring new expense and therefore inside it we have to call it now as props.onAddExpense(expenseData). I'm calling us here, and it will forward my enriched expense data here. And if we now save everything,
 
-
