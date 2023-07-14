@@ -48,7 +48,7 @@ You create a Component, which is in the end, just a function of returning some H
 - The concept of composition ("Children props").
 
 - 
-### Section -4 React State & working with events
+### Section - 4 React State and working with events
 - Listening to Events & working with event handlers
 - In Javascript we add event listener like this document.getElementById('root').addEventListener(), but in React, we add an event listener by going to the JSX element, like this button. And there we add a special prop.But now it's not a prop which sets some value for this button, but instead it's a prop which startswith on. Because React exposes all these default events as props which start with on. And for example, here we can add onClick.Now, what this does is it adds an event listener for click events to this button.Now we just need to define what should happenwhen such a click occurs.And we do that by assigning a value to this click event.And the value here, and all this on props or eventlistner props need a function as value <button onClick={function_name}>changes tille</button>
 
