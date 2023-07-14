@@ -7,7 +7,7 @@
 
 - why React is all about 'Components?
 
-        - Every UI in the end is made up of multiple buildings block (=components), hence it makes sense to think about user interface as "combinations of components".
+        -Every UI in the end is made up of multiple buildings block (=components), hence it makes sense to think about user interface as "combinations of components".
 
 - what does declarative means in react?
 
