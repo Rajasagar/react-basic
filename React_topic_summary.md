@@ -11,7 +11,7 @@
 
 - what does declarative means in react?
 
-        -  you define the desired outcome (e.g. a target UI) and let the libary React figure out the steps.
+        - you define the desired outcome (e.g. a target UI) and let the libary React figure out the steps.
 
 - what is React Components?
 
@@ -43,7 +43,7 @@ You create a Component, which is in the end, just a function of returning some H
     - React having same concept built-in We can make our components reusable by using parameters and a concept called props in React.
     - n ReactJS, the props are a type of object where the value of attributes of a tag is stored. The word “props” implies “properties”, and its working functionality is quite similar to HTML attributes. Basically, these props components are read-only components
 
-    -Props is a super important concept because it allows you to make your components reusable, and it allows you to pass data from another component to this component. And hence if we now have a look, we see these different expenses are rendered with different titles, different dates,and different amounts.
+    -Props is a super important concept because it allows you to make your components reusable, and it allows you to pass data from another component to this component. And hence if we now have a look, we see these different expenses are rendered with different titles, different dates,and different amounts..
 
 - The concept of composition ("Children props").
 
